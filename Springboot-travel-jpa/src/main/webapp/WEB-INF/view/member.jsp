@@ -12,7 +12,6 @@
 		<link rel="stylesheet" href="/css/buttons.css">
 	</head>
 	<body>
-	${ MembersDTO.cost.amount }
 		<!-- menu bar include -->
 		<%@ include file="/WEB-INF/view/menu.jspf" %>
 		<!-- body content -->

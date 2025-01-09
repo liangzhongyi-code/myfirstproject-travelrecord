@@ -38,7 +38,7 @@ public class Members {
 	
 	@Column
 	@Temporal(TemporalType.DATE) // 僅存日期
-	private Date birthday; // 到職日 
+	private Date birthday; // 生日 
 	
 	@Column(length = 20, nullable = true)
 	private String address;
