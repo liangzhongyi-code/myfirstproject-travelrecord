@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>    
+<div style="background-color: #dddddd">
+	<div style="padding: 10px">
+		<c:choose>
+			<c:when test="${sessionScope.membersDTO == null}">
+				尚未登入
+				<a href="/login" class="button-success pure-button">登入</a>
+			</c:when>
+			<c:otherwise>
+				歡迎, ${sessionScope.membersDTO.membername}
+				<a href="/logout" class="button-error pure-button">登出</a>
+			</c:otherwise>
+		</c:choose>
+		<a href="/travelrecord/country" class="button-secondary pure-button">出遊地點</a>
+		<a href="/travelrecord/traveltime" class="button-secondary pure-button">出遊時間</a>
+		<a href="/travelrecord/members" class="button-secondary pure-button">會員管理</a>
+		<a href="/travelrecord/register" class="button-secondary pure-button">會員註冊</a>
+	</div>
+</div>
