@@ -20,6 +20,8 @@ import com.example.travel.repository.MembersRepository;
  * 2.查找單筆會員資料
  * 3.新增會員(註冊)
  * 4.會員登入
+ * 5.修改會員專案
+ * 6.修改會員薪資
  * */
 
 @Service
@@ -73,5 +75,23 @@ public class MembersService {
 		member.setAddress(address);
 		member.setCost(cost);
 		membersRepository.save(member);
+	}
+	
+	//4.會員登入
+	public MembersDTO login(String membername, String password) {
+		//查詢員工
+		Members member = membersRepository.findByMembername(membername);
+		if(member == null) {
+			throw new IllegalArgumentException("查無此會員: " + membername);
+		}
+		
+		//確認密碼
+		if(!password.equals(member.getPassword())) {
+			throw new IllegalArgumentException("密碼錯誤");
+		}
+		
+		//將 Member 轉 MemberDTO
+		MembersDTO memberDTO = modelMapper.map(member, MembersDTO.class);
+		return memberDTO;
 	}
 }
