@@ -18,24 +18,24 @@
 		<!-- body content -->
 		<div style="padding: 15px">
 			<!-- 會員地點修改 -->
-			<form class="pure-form" method="post" action="/employee/project">
+			<form class="pure-form" method="post" action="/members/country">
 				<fieldset>
 					<legend>會員地點修改</legend>
-					會員編號: ${employeeDTO.id}<p />
-					會員姓名: ${employeeDTO.username}<p />
+					會員編號: ${membersDTO.id}<p />
+					會員姓名: ${membersDTO.membername}<p />
 					地點資訊: 
-						<c:forEach var="projectDTO" items="${projectDTOs}">
-							<input type="checkbox" name="projectIds" value="${projectDTO.id}" 
+						<c:forEach var="countryDTO" items="${countryDTOs}">
+							<input type="checkbox" name="countryIds" value="${countryDTO.id}" 
 							
-								<c:forEach var="projectEmployee" items="${projectDTO.employees}">
+								<c:forEach var="countryMember" items="${countryDTO.members}">
 									
-									<c:if test="${employeeDTO.id eq projectEmployee.id}">
+									<c:if test="${membersDTO.id eq countryDTO.id}">
 										checked
 									</c:if>
 									
 								</c:forEach>
 							
-							 /> ${projectDTO.name}
+							 /> ${countryDTO.countryname}
 						</c:forEach>
 					<p />
 					<button type="submit">修改</button>

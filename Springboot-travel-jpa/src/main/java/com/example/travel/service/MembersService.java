@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.travel.model.dto.MembersDTO;
 import com.example.travel.model.entity.Cost;
+import com.example.travel.model.entity.Country;
 import com.example.travel.model.entity.Members;
 import com.example.travel.repository.CostRepository;
+import com.example.travel.repository.CountryRepository;
 import com.example.travel.repository.MembersRepository;
 
 /**
@@ -33,6 +35,8 @@ public class MembersService {
 	@Autowired
 	CostRepository costRepository;
 	
+	@Autowired
+	CountryRepository countryRepository;
 	
 	@Autowired
 	ModelMapper modelMapper;
@@ -50,7 +54,7 @@ public class MembersService {
 	}
 	
 	//2.查詢單筆會員
-	public MembersDTO findMembersById(Integer id) {
+	public MembersDTO getMembersById(Integer id) {
 		Optional<Members> optMembers = membersRepository.findById(1);
 		if(optMembers.isEmpty()) {
 			throw new RuntimeException("找不到會員 ID: " + id);
@@ -96,6 +100,22 @@ public class MembersService {
 		return memberDTO;
 	}
 	
-//	//5.修改會員地點
-//	public void updateCountry()
+	//5.修改會員地點
+	public void updateCountry(Integer memberId, List<Integer> countryIds) {
+		//查詢會員
+		Members member = membersRepository.findById(memberId)
+				.orElseThrow(() -> new IllegalArgumentException("查無此會員"));
+		
+		// 找到 projectIds 符合的 projects
+		// 並且處理地點為空的情況
+		List<Country> countries = (countryIds == null || countryIds.isEmpty())
+				? List.of()
+				: countryRepository.findAllById(countryIds);
+		
+		//設置關聯
+		member.setCountries(countries);
+		
+		//儲存
+		membersRepository.save(member);
+	}
 }

@@ -36,8 +36,8 @@ public class LoginController {
 						@RequestParam(name = "password") String password,
 						HttpSession session) {
 		//有回傳代表驗證成功
-		MembersDTO memberDTO = membersService.login(membername, password);
-		session.setAttribute("memberDTO", memberDTO);
+		MembersDTO membersDTO = membersService.login(membername, password);
+		session.setAttribute("membersDTO", membersDTO);
 		return "redirect:/members";
 	}
 }

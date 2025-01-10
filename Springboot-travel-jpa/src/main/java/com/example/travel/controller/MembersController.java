@@ -3,6 +3,7 @@ package com.example.travel.controller;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.travel.model.dto.CountryDTO;
 import com.example.travel.model.dto.MembersDTO;
+import com.example.travel.repository.CountryRepository;
+import com.example.travel.service.CountryService;
 import com.example.travel.service.MembersService;
 
 import jakarta.servlet.http.HttpSession;
@@ -23,6 +27,9 @@ public class MembersController {
 
 	@Autowired
 	MembersService membersService;
+	
+	@Autowired
+	CountryService countryService;
 	
 	//取得會員資料
 	@GetMapping
@@ -40,7 +47,7 @@ public class MembersController {
 	public String register() {
 		return "member_register";
 	}
-	
+	//會員註冊
 	@PostMapping("/register")
 	public String addMember(@RequestParam(name = "membername") String membername,
 			@RequestParam(name = "password") String password,
@@ -54,11 +61,26 @@ public class MembersController {
 		return "result";
 	}
 	
-//	@GetMapping("/country")
-//	public String  getMemberCountry(Model model, HttpSession session) {
-//		//會員資料
-//		MembersDTO membersDTO = (MembersDTO)session.getAttribute("membersDTO");
-//		//所有國家資料
-//		List<CountryDTO> countryDTOs = 
-//	}
+	@GetMapping("/country")
+	public String  getMemberCountry(Model model, HttpSession session) {
+		//會員資料
+		MembersDTO membersDTO = (MembersDTO)session.getAttribute("membersDTO");
+		//所有國家資料
+		List<CountryDTO> countryDTOs = countryService.findAllCountryDTOs();
+		
+		model.addAttribute("membersDTO", membersDTO);
+		model.addAttribute("countryDTOs", countryDTOs);
+		return "members_country";
+	}
+	// 修改會員國家
+	@PostMapping("/country")
+	public String updateMembersCountry(@RequestParam(name = "countryIds", required = false) List<Integer> countryIds, HttpSession session) {
+		//projectIds.forEach(System.out::println);
+		// 會員資料
+		MembersDTO membersDTO = (MembersDTO)session.getAttribute("membersDTO");
+		Integer membersId = membersDTO.getId();
+		// 更新會員國家
+		membersService.updateCountry(membersId, countryIds);
+		return "redirect:/members";
+	}
 }

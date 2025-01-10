@@ -27,7 +27,7 @@ public class CheckLoginFilter extends HttpFilter{
 		}
 		
 		HttpSession session = request.getSession();
-		if(session == null || session.getAttribute("memberDTO") == null) {
+		if(session == null || session.getAttribute("membersDTO") == null) {
 			response.sendRedirect("/login");
 			return;
 		}
