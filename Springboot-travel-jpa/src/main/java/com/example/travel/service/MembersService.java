@@ -20,7 +20,7 @@ import com.example.travel.repository.MembersRepository;
  * 2.查找單筆會員資料
  * 3.新增會員(註冊)
  * 4.會員登入
- * 5.修改會員專案
+ * 5.修改會員旅行地點
  * 6.修改會員薪資
  * */
 
@@ -95,4 +95,7 @@ public class MembersService {
 		MembersDTO memberDTO = modelMapper.map(member, MembersDTO.class);
 		return memberDTO;
 	}
+	
+//	//5.修改會員地點
+//	public void updateCountry()
 }

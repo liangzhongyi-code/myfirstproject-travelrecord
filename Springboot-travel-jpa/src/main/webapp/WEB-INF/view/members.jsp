@@ -42,6 +42,11 @@
 									<c:forEach var="countryDTO" items="${ membersDTO.countries }"> 
 										<td>${ countryDTO.countryname }</td>
 									</c:forEach>
+									<!-- 判斷登入者 -->
+									<c:if test="${ sessionScope.membersDTO.id eq membersDTO.id }">
+										<a href="/travelrecord/country" class="button-success pure-button">修改</a>
+									</c:if>
+										
 								</table>
 							</td>
 							<td>

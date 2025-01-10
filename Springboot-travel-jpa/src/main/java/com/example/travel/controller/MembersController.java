@@ -15,15 +15,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.travel.model.dto.MembersDTO;
 import com.example.travel.service.MembersService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping("/travelrecord")
+@RequestMapping("/members")
 public class MembersController {
 
 	@Autowired
 	MembersService membersService;
 	
 	//取得會員資料
-	@GetMapping("/members")
+	@GetMapping
 	public String findAllMembers(Model model) {
 		List<MembersDTO> membersDTOs = membersService.findAllMembersDTOs();
 		
@@ -51,4 +53,12 @@ public class MembersController {
 		model.addAttribute("message", "會員註冊成功");
 		return "result";
 	}
+	
+//	@GetMapping("/country")
+//	public String  getMemberCountry(Model model, HttpSession session) {
+//		//會員資料
+//		MembersDTO membersDTO = (MembersDTO)session.getAttribute("membersDTO");
+//		//所有國家資料
+//		List<CountryDTO> countryDTOs = 
+//	}
 }

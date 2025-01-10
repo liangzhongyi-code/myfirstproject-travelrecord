@@ -13,7 +13,7 @@ import com.example.travel.model.dto.CountryDTO;
 import com.example.travel.service.CountryService;
 
 @Controller
-@RequestMapping("/travelrecord/country")
+@RequestMapping("/country")
 public class CountryController {
 
 	@Autowired
@@ -21,14 +21,14 @@ public class CountryController {
 	
 	@GetMapping
 	public String findAllCountries(CountryDTO countryDTO, Model model) {
-		List<CountryDTO> countriesDTOs = countryService.findAllCountryDTOs();
-		model.addAttribute("countriesDTOs", countriesDTOs);
+		List<CountryDTO> countryDTOs = countryService.findAllCountryDTOs();
+		model.addAttribute("countryDTOs", countryDTOs);
 		return "country";
 	}
 	
 	@PostMapping
 	public String addCountry(CountryDTO countryDTO) {
 		countryService.addCountry(countryDTO);
-		return "redirect:/travelrecord/country";
+		return "redirect:/country";
 	}
 }

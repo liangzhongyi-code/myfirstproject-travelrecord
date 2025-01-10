@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 @WebFilter(urlPatterns = {"/*"})
 public class CheckLoginFilter extends HttpFilter{
 	
-	private static List<String> whitelists = List.of("/login", "/travelrecord/register");
+	private static List<String> whitelists = List.of("/login", "/members/register");
 	
 	@Override
 	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)

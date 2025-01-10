@@ -38,6 +38,6 @@ public class LoginController {
 		//有回傳代表驗證成功
 		MembersDTO memberDTO = membersService.login(membername, password);
 		session.setAttribute("memberDTO", memberDTO);
-		return "redirect:/travelrecord/members";
+		return "redirect:/members";
 	}
 }

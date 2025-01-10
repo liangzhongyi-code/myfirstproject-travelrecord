@@ -30,7 +30,7 @@
 				🔐:<input type="password" name="password" placeholder="請輸入密碼" required /><p />
 				<button type="reset" class="pure-button">重置</button>
 				<button type="submit" class="pure-button pure-button-primary">登入</button>
-				<a href="/travelrecord/register" class="button-secondary pure-button">註冊</a>
+				<a href="/members/register" class="button-secondary pure-button">註冊</a>
 			</fieldset>
 			
 		</form>
