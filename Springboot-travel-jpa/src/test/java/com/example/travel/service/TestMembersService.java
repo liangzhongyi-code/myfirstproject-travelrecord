@@ -25,7 +25,7 @@ public class TestMembersService {
 	@Test
 	public void getOne() {
 		System.out.println("單筆查詢: ");
-		MembersDTO membersDTO = membersService.getMembersById(1);
+		MembersDTO membersDTO = membersService.getMembersDTOById(1);
 		System.out.println(membersDTO);
 	}
 }

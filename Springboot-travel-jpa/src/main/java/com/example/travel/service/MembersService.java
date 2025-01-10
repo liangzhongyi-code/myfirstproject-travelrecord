@@ -54,8 +54,8 @@ public class MembersService {
 	}
 	
 	//2.查詢單筆會員
-	public MembersDTO getMembersById(Integer id) {
-		Optional<Members> optMembers = membersRepository.findById(1);
+	public MembersDTO getMembersDTOById(Integer id) {
+		Optional<Members> optMembers = membersRepository.findById(id);
 		if(optMembers.isEmpty()) {
 			throw new RuntimeException("找不到會員 ID: " + id);
 		}
@@ -104,7 +104,7 @@ public class MembersService {
 	public void updateCountry(Integer memberId, List<Integer> countryIds) {
 		//查詢會員
 		Members member = membersRepository.findById(memberId)
-				.orElseThrow(() -> new IllegalArgumentException("查無此會員"));
+				.orElseThrow(() -> new IllegalArgumentException("查無此會員" + memberId));
 		
 		// 找到 projectIds 符合的 projects
 		// 並且處理地點為空的情況
@@ -116,6 +116,25 @@ public class MembersService {
 		member.setCountries(countries);
 		
 		//儲存
+		membersRepository.save(member);
+	}
+	
+	//6.修改會員花費
+	public void updateCost(Integer memberId, Integer amount) {
+		Members member = membersRepository.findById(memberId)
+				.orElseThrow(() -> new IllegalArgumentException("查無此會員" + memberId));
+		
+		//取得當前會員花費
+		Cost cost = member.getCost();
+		if(cost == null) {
+			cost = new Cost();
+		}
+		
+		cost.setAmount(amount);
+		costRepository.save(cost);
+		
+		//設定關聯
+		member.setCost(cost);
 		membersRepository.save(member);
 	}
 }

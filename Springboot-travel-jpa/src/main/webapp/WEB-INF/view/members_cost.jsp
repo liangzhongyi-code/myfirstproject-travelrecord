@@ -18,12 +18,12 @@
 		<!-- body content -->
 		<div style="padding: 15px">
 			<!-- 會員花費修改 -->
-			<form class="pure-form" method="post" action="/employee/salary">
+			<form class="pure-form" method="post" action="/members/cost">
 				<fieldset>
 					<legend>會員花費修改</legend>
-					會員編號: ${employeeDTO.id}<p />
-					會員姓名: ${employeeDTO.username}<p />
-					會員薪資: <input type="number" name="amount" value="${employeeDTO.salary.amount}" /><p />
+					會員編號: ${membersDTO.id}<p />
+					會員姓名: ${membersDTO.membername}<p />
+					會員薪資: <input type="number" name="amount" value="${membersDTO.cost.amount}" /><p />
 					<button type="submit">修改</button>
 				</fieldset>
 			</form>

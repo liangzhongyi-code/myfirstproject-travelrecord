@@ -60,7 +60,7 @@ public class MembersController {
 		model.addAttribute("message", "會員註冊成功");
 		return "result";
 	}
-	
+	// 取得會員(已登入)資料
 	@GetMapping("/country")
 	public String  getMemberCountry(Model model, HttpSession session) {
 		//會員資料
@@ -81,6 +81,28 @@ public class MembersController {
 		Integer membersId = membersDTO.getId();
 		// 更新會員國家
 		membersService.updateCountry(membersId, countryIds);
+		return "redirect:/members";
+	}
+	
+	// 取得會員(已登入)花費
+	@GetMapping("/cost")
+	public String getMemberCost(Model model, HttpSession session) {
+		MembersDTO membersDTO = (MembersDTO) session.getAttribute("membersDTO");
+		Integer memberId = membersDTO.getId();
+		//取得最新資訊
+		membersDTO = membersService.getMembersDTOById(memberId);
+		model.addAttribute("membersDTO", membersDTO);
+		return "members_cost";
+	}
+	
+	//修改會員花費
+	@PostMapping("/cost")
+	public String updateMemberCost(@RequestParam(name = "amount") Integer amount, HttpSession session) {
+		//會員資料
+		MembersDTO membersDTO = (MembersDTO) session.getAttribute("membersDTO");
+		Integer memberID = membersDTO.getId();
+		//更新會員資訊
+		membersService.updateCost(memberID, amount);
 		return "redirect:/members";
 	}
 }
