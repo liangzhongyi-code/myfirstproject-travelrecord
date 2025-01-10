@@ -4,12 +4,12 @@
 <div style="background-color: #dddddd">
 	<div style="padding: 10px">
 		<c:choose>
-			<c:when test="${sessionScope.membersDTO == null}">
+			<c:when test="${sessionScope.memberDTO == null}">
 				尚未登入
 				<a href="/login" class="button-success pure-button">登入</a>
 			</c:when>
 			<c:otherwise>
-				歡迎, ${sessionScope.membersDTO.membername}
+				歡迎, ${sessionScope.memberDTO.membername}
 				<a href="/logout" class="button-error pure-button">登出</a>
 			</c:otherwise>
 		</c:choose>
