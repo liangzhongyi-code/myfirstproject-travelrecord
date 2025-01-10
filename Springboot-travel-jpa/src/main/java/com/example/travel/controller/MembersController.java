@@ -27,6 +27,6 @@ public class MembersController {
 	        System.out.println("Cost Amount: " + member.getCost().getAmount());
 	    }
 		model.addAttribute("membersDTOs", membersDTOs);
-		return "member";
+		return "members";
 	}
 }
