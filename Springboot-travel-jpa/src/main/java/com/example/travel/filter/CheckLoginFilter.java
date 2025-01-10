@@ -1,6 +1,7 @@
 package com.example.travel.filter;
 
 import java.io.IOException;
+import java.util.List;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -13,12 +14,14 @@ import jakarta.servlet.http.HttpSession;
 @WebFilter(urlPatterns = {"/*"})
 public class CheckLoginFilter extends HttpFilter{
 	
+	private static List<String> whitelists = List.of("/login", "/travelrecord/register");
+	
 	@Override
 	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {		
 		
 		String servletPath = request.getServletPath();
-		if(servletPath.contains("/login")) {
+		if(whitelists.contains(servletPath)) {
 			chain.doFilter(request, response);
 			return;
 		}
