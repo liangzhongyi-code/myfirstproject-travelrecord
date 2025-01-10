@@ -19,14 +19,14 @@
 		<div style="padding: 15px">
 			<!-- 專案工作 -->
 			<sp:form class="pure-form" modelAttribute="countryDTO" method="post" action="/travelrecord/country">
-			    專案名稱: <sp:input path="countryname" /> <p />
+			    國家名稱: <sp:input path="countryname" /> <p />
 			    <button type="submit">新增</button>
 			</sp:form>
 			<!-- 專案列表 -->
 			<table class="pure-table pure-table-bordered">
 				<thead>
 					<tr>
-						<th>ID</th><th>國家名稱</th><th>會員</th>
+						<th>ID</th><th>國家名稱</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,9 +34,6 @@
 						<tr>
 							<td>${ country.id }</td>
 							<td>${ country.countryname }</td>
-							<td>
-								
-							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
