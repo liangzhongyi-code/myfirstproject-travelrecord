@@ -18,8 +18,8 @@
 		<!-- body content -->
 		<div style="padding: 15px">
 			<!-- 員工註冊 -->
-			<form class="pure-form" method="post" action="/employee/register">
-			    會員姓名: <input name="username" required="required" /> <p />
+			<form class="pure-form" method="post" action="/travelrecord/register">
+			    會員姓名: <input name="membername" required="required" /> <p />
 			    登入密碼: <input name="password" required="required" /> <p />
 			    出遊花費: <input name="costAmount" value="10000" min="10000" max="100000000" required="required"/> <p />
 			    出生日期: <input name="birthday" type="date" required="required" /> <p />
