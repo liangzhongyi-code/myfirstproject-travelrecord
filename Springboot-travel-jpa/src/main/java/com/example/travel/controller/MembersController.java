@@ -45,7 +45,7 @@ public class MembersController {
 	
 	@GetMapping("/register")
 	public String register() {
-		return "member_register";
+		return "members_register";
 	}
 	//會員註冊
 	@PostMapping("/register")
