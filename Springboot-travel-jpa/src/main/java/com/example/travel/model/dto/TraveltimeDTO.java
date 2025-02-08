@@ -1,5 +1,7 @@
 package com.example.travel.model.dto;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import lombok.Getter;
@@ -11,14 +13,19 @@ public class TraveltimeDTO {
 	
 	private Integer id;
 	
-	private Date startDate;
+	private LocalDate startDate;
 	
-	private Date endDate;
+	private LocalDate endDate;
 	
 	private String airline; //航空公司
 	
+	private String country; //出遊地點
+	
 	public Long gettravelDays() {
-		long travelDays = (endDate.getTime() - startDate.getTime()) / (60*60*24*1000);
-		return travelDays;
+		if (startDate != null && endDate != null) {
+            return ChronoUnit.DAYS.between(startDate, endDate);
+        }
+        return (long) 0;
+    
 	}
 }

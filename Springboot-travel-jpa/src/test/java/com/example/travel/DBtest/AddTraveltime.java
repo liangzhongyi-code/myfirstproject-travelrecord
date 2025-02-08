@@ -1,6 +1,7 @@
 package com.example.travel.DBtest;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 
@@ -35,9 +36,9 @@ public class AddTraveltime {
 			Members members = optMembers.get();
 			
 			//設定格式與日期
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date startDate = sdf.parse("2024-03-09");
-			Date endDate = sdf.parse("2024-03-13");
+			
+			LocalDate startDate = LocalDate.of(2023, 02, 25);
+			LocalDate endDate = LocalDate.of(2023, 03, 01);
 			
 			//建立旅遊時間
 			Traveltime traveltime = new Traveltime();
@@ -45,6 +46,7 @@ public class AddTraveltime {
 			traveltime.setEndDate(endDate);
 			traveltime.setMembers(members);
 			traveltime.setAirline("China Airlines");
+			traveltime.setCountry("Japan");
 			traveltimeRepository.save(traveltime);
 			
 			System.out.println("新增成功");

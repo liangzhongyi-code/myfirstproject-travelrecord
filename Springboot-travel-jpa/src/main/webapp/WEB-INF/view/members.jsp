@@ -21,7 +21,7 @@
 				<thead>
 					<tr>
 						<th>編號</th><th>姓名</th><th>國籍</th><th>生日</th>
-						<th>花費</th><th>出遊地點</th><th>出遊時間</th>
+						<th>花費</th><th>去過的國家</th><th>出遊時間</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,10 +56,30 @@
 								<table>
 									<c:forEach var="traveltimeDTO" items="${ membersDTO.traveltimes }">
 										<tr>
+											<td>${ traveltimeDTO.id }</td>
 											<td>${ traveltimeDTO.airline }</td>
+											<td>${ traveltimeDTO.country }</td>
 											<td>${ traveltimeDTO.startDate } ~ ${ traveltimeDTO.endDate }</td>
+											<c:if test="${ sessionScope.membersDTO.id eq membersDTO.id }">
+												<!-- 修改假單 -->
+												<td>
+													<a href="/traveltime?_method=PUT&id=${ traveltimeDTO.id }" class="button-success pure-button">修改出國日期</a>
+												</td>
+												<!-- 刪除假單 -->
+												<td>
+													<a href="/traveltime?_method=DELETE&id=${ traveltimeDTO.id }" class="button-error pure-button">刪除出國日期</a>
+												</td>
+											</c:if>
 										</tr>
 									</c:forEach>
+									<!-- 新增假單 -->
+									<c:if test="${ sessionScope.membersDTO.id eq membersDTO.id }">
+										<tr>
+											<td>
+												<a href="/traveltime?_method=POST" class="button-secondary pure-button">新增出國日期</a>
+											</td>
+										</tr>
+									</c:if>
 								</table>
 							</td>
 						</tr>

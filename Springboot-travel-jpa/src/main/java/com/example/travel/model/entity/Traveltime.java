@@ -1,6 +1,9 @@
 package com.example.travel.model.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,8 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,17 +30,18 @@ public class Traveltime {
 	@JoinColumn(name = "member_id")
 	private Members members;
 	
-	@Column
-	@Temporal(TemporalType.DATE)
-	private Date startDate; //出發日期
+	@DateTimeFormat(pattern = "yyyy-MM-dd") // 指定只有日期
+	private LocalDate startDate;
 	
-	@Column
-	@Temporal(TemporalType.DATE)
-	private Date endDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd") // 指定只有日期
+	private LocalDate endDate;
 	
 	@Column(nullable = false)
 	private String airline; //航空公司
 
+	@Column(nullable = false)
+	private String country; //出遊地點
+	
 	@Override
 	public String toString() {
 		return "traveltime [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", airline=" + airline

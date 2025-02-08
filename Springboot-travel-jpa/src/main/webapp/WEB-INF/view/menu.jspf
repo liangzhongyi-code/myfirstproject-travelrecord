@@ -14,7 +14,7 @@
 			</c:otherwise>
 		</c:choose>
 		<a href="/country" class="button-secondary pure-button">出遊地點</a>
-		<a href="/travelrecord/traveltime" class="button-secondary pure-button">出遊時間</a>
+		<a href="/traveltime/find" class="button-secondary pure-button">出遊時間</a>
 		<a href="/members" class="button-secondary pure-button">會員管理</a>
 		<a href="/members/register" class="button-secondary pure-button">會員註冊</a>
 	</div>
